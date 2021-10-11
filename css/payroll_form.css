@@ -161,3 +161,33 @@ select {
     text-decoration: none;
     text-align: center;
 }
+
+@media only screen and (max_width: 960px) {
+    .cancelButton {
+        margin-left: 0px;
+    }
+
+    .form {
+        width: 85%;
+        padding: 44px 20px;
+    }
+}
+
+@media only screen and (max_width: 600px) {
+    .form {
+        margin-top: 10px;
+    }
+
+    .profile-radio-content {
+        justify-content: flex-start;
+    }
+    
+    .submitButton {
+        margin: 0px;
+    }
+
+    .buttonParent {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+}
