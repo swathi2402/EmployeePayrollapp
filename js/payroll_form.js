@@ -24,20 +24,3 @@ form.onsubmit = function() {
     }
 }
 
-// function save() { 
-//     employeeName = document.querySelector('#name').value;
-//     employeeGender =  document.querySelector('#gender').value;
-//     employeeDepartment =  document.querySelector('#department').value;
-//     employeeSalary = document.querySelector('#salary').value;
-//     day = document.querySelector('#day').value;
-//     month = parseInt(document.querySelector('#month').value) - 1;
-//     year = document.querySelector('#year').value;
-//     employeeStartDate = new Date(year, month, day);
-
-//     try {
-//         let employeePayrollData = new EmployeePayrollData(employeeName, employeeGender, employeeDepartment, employeeSalary, employeeStartDate);
-//         alert ("Employee Object populated: " + employeePayrollData);
-//     } catch (e) {
-//         alert (e);
-//     }
-// }
