@@ -8,8 +8,8 @@ salary.addEventListener('input',function() {
 var form = document.querySelector("form");
 form.onsubmit = function() { 
     employeeName = document.getElementById("name").value;
-    employeeGender =  document.getElementsByName("gender").value;
-    employeeDepartment =  document.getElementsByName("department").value;
+    employeeGender =  document.querySelector('input[name="gender"]:checked').value;
+    employeeDepartment =  document.querySelector('input[name="department"]:checked').value;
     employeeSalary = document.getElementById("salary").value;
     day = document.getElementById("day").value;
     month = document.getElementById("month").value;
