@@ -9,7 +9,13 @@ var form = document.querySelector("form");
 form.onsubmit = function() { 
     employeeName = document.getElementById("name").value;
     employeeGender =  document.querySelector('input[name="gender"]:checked').value;
-    employeeDepartment =  document.querySelector('input[name="department"]:checked').value;
+    departmentList =  document.querySelectorAll('.checkbox:checked');
+    let employeeDepartment = new Array();
+    for (let department of departmentList) {
+        if (department.checked) {
+            employeeDepartment.push(department.value);
+        }
+    }
     employeeSalary = document.getElementById("salary").value;
     day = document.getElementById("day").value;
     month = document.getElementById("month").value;
