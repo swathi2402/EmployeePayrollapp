@@ -167,6 +167,13 @@ select {
     opacity: 1;
 }
 
+error-output {
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+    margin-left: 10px;
+}
+
 @media only screen and (max_width: 960px) {
     .cancelButton {
         margin-left: 0px;

@@ -64,8 +64,13 @@ class EmployeePayrollData {
     }
 
     set startDate(startDate) {
-        if(new Date() < startDate) throw 'Start date is invalid!';
-        else this._startDate = startDate;
+        var today = new Date();
+        const oneMonthSpan = new Date(today.setDate(today.getDate()-30));
+        presentDay = new Date();
+        if(presentDay < startDate || startDate < oneMonthSpan) 
+            throw 'Start date is invalid!';
+        else 
+            this._startDate = startDate;
     }
 
     toString() {

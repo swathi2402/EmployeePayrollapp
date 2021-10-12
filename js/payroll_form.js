@@ -1,3 +1,13 @@
+const text = document.querySelector('#name');
+const textError = document.querySelector('.name-error');
+text.addEventListener('input', function() {
+    let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+    if(nameRegex.test(text.value))
+        textError.textContent = "";
+    else
+        textError.textContent ="Name is incorrect";
+});
+
 const salary = document.querySelector('#salary');
 const salary_output = document.querySelector('.salary-output');
 salary_output.textContent = salary.value;
