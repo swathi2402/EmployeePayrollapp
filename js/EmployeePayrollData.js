@@ -1,5 +1,4 @@
 class EmployeePayrollData {
-    gender;
     department;
 
     constructor(...params) {
@@ -52,25 +51,9 @@ class EmployeePayrollData {
         const options = {year: 'numeric', month: 'long', day: 'numeric'};
         const empDate = !this.startDate ? "not defined" : 
                         this.startDate.toLocaleDateString("en-US", options);
-        return "name = " + this.name + ", salary = " + this.salary + ", startDate = " + empDate;
+        return "name = " + this.name + ", gender = " + this.gender + ", department = " + this.department + ", salary = " + this.salary + ", startDate = " + empDate;
     }
 } 
 
-list= [];
 
-var form = document.querySelector("form");
-form.onsubmit = function() { 
-    employeeName = document.getElementById("name").value;
-    employeeGender =  document.getElementsByName("gender").value;
-    employeeDepartment =  document.getElementsByName("department").value;
-    employeeSalary = document.getElementById("salary").value;
-    day = document.getElementById("day").value;
-    month = document.getElementById("month").value;
-    year = document.getElementById("year").value;
-    employeeStartDate = new Date(year, month, day);
-
-    let employeePayrollData = new EmployeePayrollData(employeeName, employeeGender, employeeDepartment, employeeSalary, employeeStartDate);
-    list.push(employeePayrollData);
-    console.log(list);
-}
 
