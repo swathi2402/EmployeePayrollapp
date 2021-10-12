@@ -64,21 +64,20 @@ class EmployeePayrollData {
     }
 
     set startDate(startDate) {
-        var today = new Date();
-        const oneMonthSpan = new Date(today.setDate(today.getDate()-30));
-        presentDay = new Date();
-        if(presentDay < startDate || startDate < oneMonthSpan) 
-            throw 'Start date is invalid!';
-        else 
+        let oneMonthSpan = new Date();
+        oneMonthSpan.setDate(oneMonthSpan.getDate() - 30);
+        if (startDate < new Date() && startDate > oneMonthSpan)
             this._startDate = startDate;
+        else
+            throw 'Start date is invalid!';
     }
 
     toString() {
         const options = {year: 'numeric', month: 'long', day: 'numeric'};
         const empDate = !this.startDate ? "not defined" : 
                         this.startDate.toLocaleDateString("en-US", options);
-        return "id =" + this.id + "name = " + this.name + ", gender = " + this.gender + "profilePic =" + this.profilePic + ", department = " + this.department + 
-               ", salary = " + this.salary + ", startDate = " + empDate + "note =" + this.note;
+        return "id =" + this.id + ", name = " + this.name + ", gender = " + this.gender + ", profilePic = " + this.profilePic + ", department = " + this.department + 
+               ", salary = " + this.salary + ", startDate = " + empDate + ", note =" + this.note;
     }
 } 
 
