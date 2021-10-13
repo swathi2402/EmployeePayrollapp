@@ -178,7 +178,7 @@ error-output {
     .cancelButton {
         margin-left: 0px;
     }
-
+    
     .form {
         width: 85%;
         padding: 44px 20px;
@@ -203,3 +203,21 @@ error-output {
         align-items: flex-start;
     }
 }
+
+@media only screen and (min-width: 600px) {
+    .form {
+        margin-top: 10px;
+        padding: 5px 5px;
+    }
+
+    .button {
+        min-width: 0px;
+    }
+
+    .profile-radio-content> label {
+        flex-direction: column-reverse;
+        padding: 0px 4px
+    }
+
+}
+
