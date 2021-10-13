@@ -1,19 +1,46 @@
-const text = document.querySelector('#name');
-const textError = document.querySelector('.name-error');
-text.addEventListener('input', function() {
-    let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
-    if(nameRegex.test(text.value))
+window.addEventListener("DOMContentLoaded", (event) => {
+    const name = document.getElementById("name");
+    const textError = document.querySelector(".name-error");
+    name.addEventListener('input', function () {
+      if (name.value.length == 0) {
         textError.textContent = "";
-    else
-        textError.textContent ="Name is incorrect";
-});
-
-const salary = document.querySelector('#salary');
-const salary_output = document.querySelector('.salary-output');
-salary_output.textContent = salary.value;
-salary.addEventListener('input',function() {
-    salary_output.textContent = salary.value;
-});
+        return;
+      }
+      try {
+        new EmployeePayrollData().name = name.value;
+        textError.textContent = "";
+      } catch (e) {
+        textError.textContent = e;
+      }
+    });
+  
+    const salary = document.querySelector("#salary");
+    const output = document.querySelector(".salary-output");
+    output.textContent = salary.value;
+    salary.addEventListener('input', function () {
+      output.textContent = salary.value;
+    });
+  
+    var date = document.getElementById("day");
+    var month = document.getElementById("month");
+    var year = document.getElementById("year");
+    const dateError = document.querySelector(".date-error");
+    date.addEventListener('change', validateDate);
+    month.addEventListener('change', validateDate);
+    year.addEventListener('change', validateDate);
+  
+    function validateDate() {
+      let startDate = Date.parse(
+        year.value + "-" + month.value + "-" + date.value
+      );
+      try {
+        new EmployeePayrollData().startDate = startDate;
+        dateError.textContent = "";
+      } catch (e) {
+        dateError.textContent = e;
+      }
+    }
+  });
 
 const save = () => {
     try {

@@ -204,10 +204,10 @@ error-output {
     }
 }
 
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
     .form {
         margin-top: 10px;
-        padding: 5px 5px;
+        padding: 10px 10px;
     }
 
     .button {
@@ -219,5 +219,9 @@ error-output {
         padding: 0px 4px
     }
 
-}
+    .label {
+        min-width: 120px;
+    }
+
+} */
 
