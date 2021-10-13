@@ -113,6 +113,7 @@ const resetForm = () => {
     unsetSelectedValues('[name=department]');
     setValue('#salary', '');
     setValue('#notes', '');
+    setTextValue(".salary-output", "400000");
     setValue('#day', '1');
     setValue('#month', 'January');
     setValue('#year', '2021');
