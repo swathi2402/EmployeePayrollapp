@@ -1,21 +1,21 @@
-let employeePayrollList;
+let empPayrollList;
 window.addEventListener("DOMContentLoaded", (event) => {
-    employeePayrollList = getPayrollDataFromstorage();
-    document.querySelector(".emp-count").textContent = employeePayrollList.length;
+    empPayrollList = getPayrollDataFromstorage();
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHtml();
     localStorage.removeItem('editEmp');
 });
 
 const getPayrollDataFromstorage = () => {
-    return localStorage.getItem('EmployeePPayrollList') ? JSON.parse(localStorage.getItem('EmployeePPayrollList')) : [];
+    return localStorage.getItem('EmployeePayrollList') ? JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
 }
 
 const createInnerHtml = () => {
     const headerHtml = "<th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th>"
-    if (employeePayrollList.length == 0) return;
+    if (empPayrollList.length == 0) return;
     let innerHtml = `${headerHtml}`;
-    for (const employeePayrollData of employeePayrollList) {
-        innerHtml = `${headerHtml}
+    for (const employeePayrollData of empPayrollList) {
+        innerHtml += `
             <tr>
                 <td><img class="profile" alt="" src="${employeePayrollData._profilePic}"></td>
                 <td>${employeePayrollData._name}</td>
