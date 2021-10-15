@@ -64,12 +64,14 @@ class EmployeePayrollData {
     }
 
     set startDate(startDate) {
+        let now = new Date();
+        if (startDate > now) 
+            throw 'Start date is future date';
         let oneMonthSpan = new Date();
         oneMonthSpan.setDate(oneMonthSpan.getDate() - 30);
-        if (startDate < new Date() && startDate > oneMonthSpan)
-            this._startDate = startDate;
-        else
-            throw 'Start date is invalid!';
+        if (startDate < oneMonthSpan)
+            throw 'Start date is beyond 30 days';
+        this._startDate = startDate;
     }
 
     toString() {
