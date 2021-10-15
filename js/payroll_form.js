@@ -1,4 +1,4 @@
-let isUpdate = 1;
+let isUpdate = false;
 let employeePayrollObj = {};
 
 window.addEventListener("DOMContentLoaded", (event) => {
