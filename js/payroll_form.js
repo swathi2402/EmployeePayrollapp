@@ -1,4 +1,4 @@
-let isUpdate = 1;
+let isUpdate = false;
 let employeePayrollObj = {};
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -47,14 +47,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
     checkForUpdate();
   });
 
-const save = () => {
+const save = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     try {
-        let employeePayrollData = createEmployeePayroll();
-        console.log(employeePayrollData);
-        createAndUpdateStorage(employeePayrollData);
+        setEmployeePayrollObject();
+        createAndUpdateStorage();
+        resetForm();
+        window.location.replace(site_properties.home_page);
     } catch (error) {
         return;
     }
+}
+
+const setEmployeePayrollObject = () => {
+    employeePayrollObj._name = getInputValueById('#name');
+    employeePayrollObj._profilePic = getSelectedValues('[name=gender]').pop();
+    employeePayrollObj._gender = getSelectedValues('[name=gender]').pop();
+    employeePayrollObj._department = getSelectedValues('[name=department]');
+    employeePayrollObj._salary = getInputValueById("#salary");
+    employeePayrollObj._note = getInputValueById("#notes");
+    let date = getInputValueById("#month") + " " + getInputValueById('#day') + " " + getInputValueById('#year');
+    employeePayrollObj._startDate = date;   
 }
 
 const createEmployeePayroll = () => { 
@@ -101,15 +115,71 @@ const getInputElementValue = (id) => {
     return value;
 }
 
-function createAndUpdateStorage(employeePayrollData) {
+function createAndUpdateStorage() {
     let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-    if(employeePayrollList != undefined) {
-        employeePayrollList.push(employeePayrollData);
+    if(employeePayrollList) {
+        let employeePayrollData = employeePayrollList.find((empData) => empData._id == employeePayrollObj._id);
+        if(!employeePayrollData) {
+            employeePayrollList.push(createEmployeePayroll());
+        } else {
+            const index = employeePayrollList
+                            .map((empData) => empData._id)
+                            .indexOf(employeePayrollData._id);
+            employeePayrollList.splice(index, 1, createEmployeePayrollData(employeePayrollData._id));
+        }
     } else {
-        employeePayrollList =  [employeePayrollData]
+        employeePayrollList =  [createEmployeePayroll()]
     }
     alert(employeePayrollList.toString());
     localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+}
+
+const createEmployeePayrollData = (id) => {
+    let employeePayrollData = new EmployeePayrollData();
+    if (!id)
+        employeePayrollData.id = createNewEmployeeId();
+    else
+        employeePayrollData.id = id;
+    setEmployeePayrollData(employeePayrollData);
+    return employeePayrollData;
+}
+
+const setEmployeePayrollData = (employeePayrollData) => {
+    try {
+        employeePayrollData.name = employeePayrollObj._name;
+    } catch (error) {
+        setTextValue('.name-error', error);
+        throw error;
+    }
+    employeePayrollData.profilePic = employeePayrollObj._profilePic;
+    employeePayrollData.gender = employeePayrollObj._gender;
+    employeePayrollData.department = employeePayrollObj._department;
+    employeePayrollData.salary = employeePayrollObj._salary;
+    employeePayrollData.note = employeePayrollObj._note;
+    try {
+        employeePayrollData.startDate = new Date(Date.parse(employeePayrollObj._startDate));
+    } catch (error) {
+        setTextValue('.date-error', error);
+        throw error;
+    }
+    alert(employeePayrollData.toString());
+}
+
+const createNewEmployeeId = () => {
+    let empId = localStorage.getItem("EmployeeId");
+    empId = !empId ? 1 : (parseInt(empId) + 1).toString();
+    localStorage.setItem("EmployeeId", empId);
+    return empId;
+}
+
+const getSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    let selItems = [];
+    allItems.forEach(item => {
+        if(item.checked)
+            selItems.push(item.value);
+    });
+    return selItems;
 }
 
 const resetForm = () => {
