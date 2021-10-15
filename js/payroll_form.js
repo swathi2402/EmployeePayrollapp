@@ -62,7 +62,7 @@ const save = (event) => {
 
 const setEmployeePayrollObject = () => {
     employeePayrollObj._name = getInputValueById('#name');
-    employeePayrollObj._profilePic = getSelectedValues('[name=gender]').pop();
+    employeePayrollObj._profilePic = getSelectedValues('[name=profile]').pop();
     employeePayrollObj._gender = getSelectedValues('[name=gender]').pop();
     employeePayrollObj._department = getSelectedValues('[name=department]');
     employeePayrollObj._salary = getInputValueById("#salary");
@@ -120,7 +120,7 @@ function createAndUpdateStorage() {
     if(employeePayrollList) {
         let employeePayrollData = employeePayrollList.find((empData) => empData._id == employeePayrollObj._id);
         if(!employeePayrollData) {
-            employeePayrollList.push(createEmployeePayroll());
+            employeePayrollList.push(createEmployeePayrollData());
         } else {
             const index = employeePayrollList
                             .map((empData) => empData._id)
@@ -172,16 +172,6 @@ const createNewEmployeeId = () => {
     return empId;
 }
 
-const getSelectedValues = (propertyValue) => {
-    let allItems = document.querySelectorAll(propertyValue);
-    let selItems = [];
-    allItems.forEach(item => {
-        if(item.checked)
-            selItems.push(item.value);
-    });
-    return selItems;
-}
-
 const resetForm = () => {
     setValue('#name', '');
     unsetSelectedValues('[name=profile]');
@@ -229,7 +219,6 @@ const checkForUpdate = () => {
     setTextValue(".salary-output", employeePayrollObj._salary);
     setValue("#notes", employeePayrollObj._note);
     let date = stringifyDate(employeePayrollObj._startDate).split(" ");
-    console.log(date);
     setValue("#day", date[0]);
     setValue("#month", date[1]);
     setValue("#year", date[2]);
