@@ -5,22 +5,25 @@
       "_name": "Bill",
       "_gender": "Male",
       "_department": [
-        "Engineering"
+        "Sales",
+        "Finance",
+        "Engineer"
       ],
       "_salary": "500000",
-      "_startDate": "29 Oct 2019",
-      "_note": "Terrific Engineer",
-      "_profilePic": "../assets/profile-images/Ellipse -1.png"
+      "_startDate": "Oct 16 2021",
+      "_note": "Terrific Engineer ...",
+      "_profilePic": "../assets/profile-images/Ellipse -8.png"
     },
     {
       "_name": "Swathi",
       "_profilePic": "../assets/profile-images/Ellipse 1.png",
       "_gender": "Female",
       "_department": [
-        "Sales"
+        "Sales",
+        "Engineer"
       ],
       "_salary": "400000",
-      "_note": "",
+      "_note": "Hello",
       "_startDate": "Oct 1 2021",
       "id": 4
     },

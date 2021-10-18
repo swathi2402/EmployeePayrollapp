@@ -94,30 +94,6 @@ const setEmployeePayrollObject = () => {
     employeePayrollObj._startDate = date;   
 }
 
-const createEmployeePayroll = () => { 
-    let employeePayrollData = new EmployeePayrollData();
-    try {
-        employeePayrollData.name = getInputValueById("#name");
-    } catch (error) {
-        setTextValue('.name-error', error);
-        throw error;
-    }
-    try {
-        employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop();
-        employeePayrollData.gender = getSelectedValues('[name=gender]').pop();
-        employeePayrollData.department = getSelectedValues('[name=department]');
-        employeePayrollData.salary = getInputValueById("#salary");
-        employeePayrollData.note = getInputValueById("#notes");
-        let date = getInputValueById("#month") + " " + getInputValueById('#day') + " " + getInputValueById('#year');
-        employeePayrollData.startDate = new Date(date);   
-        employeePayrollData.id = new Date().getTime();   
-        alert(employeePayrollData.toString());
-        return employeePayrollData;
-    } catch (error) {
-        alert(error);
-    }
-}
-
 const getSelectedValues = (propertyValue) => {
     let allItems = document.querySelectorAll(propertyValue);
     let selItems = [];
