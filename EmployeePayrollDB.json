@@ -26,6 +26,18 @@
       "_profilePic": "../assets/profile-images/Ellipse -1.png"
     },
     {
+      "_name": "Swathi",
+      "_profilePic": "../assets/profile-images/Ellipse 1.png",
+      "_gender": "Female",
+      "_department": [
+        "Sales"
+      ],
+      "_salary": "400000",
+      "_note": "",
+      "_startDate": "Oct 1 2021",
+      "id": 4
+    },
+    {
       "_name": "Amarpa",
       "_gender": "Female",
       "_department": [
