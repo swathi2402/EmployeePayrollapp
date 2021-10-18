@@ -23,5 +23,48 @@
     <div id="delete_services"></div>
     <div id="post_services"></div>
     <script src="../js/http_service.js"></script>
+    <script>
+        const getElement = document.querySelector('#get_services');
+        const getUrl = "http://localhost:3000/EmployeePayrollDB/1";
+        makePromisecall("GET", getUrl, true)
+                    .then(responseText => {
+                        getElement.textContent = "Get user data: " + responseText;
+                    })
+                    .catch(error => {
+                        getElement.textContent = "GET ERROR Status: " + JSON.stringify(error);
+                    })
+
+        const deleteElement = document.querySelector('#delete_services');            
+        const deleteUrl = "http://localhost:3000/EmployeePayrollDB/3";
+        makePromisecall("DELETE", deleteUrl, false)
+                        .then(responseText => {
+                            deleteElement.textContent = "User deleted: " + responseText;
+                        })
+                        .catch(error => {
+                            deleteElement.textContent = "DELETE ERROR Status: " + JSON.stringify(error);
+                        });
+
+        const postElement = document.querySelector('#post_services');
+        const postUrl = "http://localhost:3000/EmployeePayrollDB/";
+        const empData = {
+            "_name": "Amarpa",
+            "_gender": "Female",
+            "_department": [
+            "Sales"
+            ],
+            "_salary": "400000",
+            "_startDate": "29 Oct 2019",
+            "_note": "",
+            "_profilePic": "../assets/profile-images/Ellipse -1.png",
+            "id": 3
+        };
+        makePromisecall("POST", postUrl, true, empData)
+                        .then(responseText => {
+                            postElement.textContent = "User added: " + responseText;
+                        })
+                        .catch(error => {
+                            postElement.textContent = "POST ERROR Status: " + JSON.stringify(error);
+                        });
+    </script>
 </body>
 </html> 
