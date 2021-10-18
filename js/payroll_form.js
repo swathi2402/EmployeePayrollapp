@@ -162,7 +162,6 @@ const setEmployeePayrollData = (employeePayrollData) => {
         setTextValue('.date-error', error);
         throw error;
     }
-    alert(employeePayrollData.toString());
 }
 
 const createNewEmployeeId = () => {
